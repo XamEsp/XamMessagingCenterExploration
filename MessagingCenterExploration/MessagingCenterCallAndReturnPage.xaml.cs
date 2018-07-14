@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+// https://docs.microsoft.com/en-us/dotnet/api/Xamarin.Forms.MessagingCenter?view=xamarin-forms
 namespace MessagingCenterExploration
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -18,18 +19,17 @@ namespace MessagingCenterExploration
             InitializeComponent();
             // MessagingCenter.Unsubscribe<MessagingCenterCallAndReturnViewModel>(this, "CallViewFromViewModel"); // This will not do anything
             MessagingCenter.Subscribe<MessagingCenterCallAndReturnViewModel>(this, "CallViewFromViewModel", HandleCall);
+            ReportStackLayout.Children.Clear();
         }
 
         public void HandleCall(MessagingCenterCallAndReturnViewModel sender)
         {
-            // You will enter multiple times here, but only one item will be added to the ReportStackLayout
+            // You will enter multiple times here, but only one item will be added to the ReportStackLayout, but the children count will show the total times you entered here
             Debug.WriteLine("Handling Call from ViewModel");
-
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                ReportStackLayout.Children.Add(new Label { Text = $"Handling Call from ViewModel {ReportStackLayout.Children.Count}" });
-            });
+            var count = ReportStackLayout.Children.Count;
+            ReportStackLayout.Children.Add(new Label { Text = $"Handling Call from ViewModel {count}" });
         }
 
     }
+
 }
