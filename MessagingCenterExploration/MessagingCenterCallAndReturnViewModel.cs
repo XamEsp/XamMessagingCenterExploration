@@ -1,0 +1,24 @@
+﻿using System.Diagnostics;
+using System.Windows.Input;
+using Xamarin.Forms;
+
+namespace MessagingCenterExploration
+{
+    public class MessagingCenterCallAndReturnViewModel
+    {
+
+        public ICommand CallViewCommand { get; set; }
+
+        public MessagingCenterCallAndReturnViewModel()
+        {
+            CallViewCommand = new Command(CallView);
+        }
+
+        public void CallView()
+        {
+            Debug.WriteLine("Sending Message to the View");
+            MessagingCenter.Send(this, "CallViewFromViewModel");
+        }
+
+    }
+}
