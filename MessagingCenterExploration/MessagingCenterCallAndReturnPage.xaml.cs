@@ -24,7 +24,11 @@ namespace MessagingCenterExploration
         {
             // You will enter multiple times here, but only one item will be added to the ReportStackLayout
             Debug.WriteLine("Handling Call from ViewModel");
-            ReportStackLayout.Children.Add(new Label { Text = $"Handling Call from ViewModel {ReportStackLayout.Children.Count}" });
+
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                ReportStackLayout.Children.Add(new Label { Text = $"Handling Call from ViewModel {ReportStackLayout.Children.Count}" });
+            });
         }
 
     }
