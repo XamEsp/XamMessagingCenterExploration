@@ -18,6 +18,7 @@ namespace MessagingCenterExploration
         private async void Button_Clicked(object sender, EventArgs e)
         {
             var page = new MessagingCenterCallAndReturnPage();
+            MessagingCenter.Subscribe<MessagingCenterCallAndReturnViewModel>(page, "CallViewFromViewModel", page.HandleCall);
             await Navigation.PushAsync(page);
         }
     }

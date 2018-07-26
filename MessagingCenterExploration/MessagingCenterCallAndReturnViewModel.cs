@@ -17,7 +17,10 @@ namespace MessagingCenterExploration
         public void CallView()
         {
             Debug.WriteLine("Sending Message to the View");
-            MessagingCenter.Send(this, "CallViewFromViewModel");
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                MessagingCenter.Send(this, "CallViewFromViewModel");
+            });
         }
 
     }

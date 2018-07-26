@@ -18,7 +18,7 @@ namespace MessagingCenterExploration
         {
             InitializeComponent();
             // MessagingCenter.Unsubscribe<MessagingCenterCallAndReturnViewModel>(this, "CallViewFromViewModel"); // This will not do anything
-            MessagingCenter.Subscribe<MessagingCenterCallAndReturnViewModel>(this, "CallViewFromViewModel", HandleCall);
+            
             ReportStackLayout.Children.Clear();
         }
 
@@ -31,5 +31,4 @@ namespace MessagingCenterExploration
         }
 
     }
-
 }
