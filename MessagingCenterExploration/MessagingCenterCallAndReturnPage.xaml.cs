@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,8 +11,7 @@ namespace MessagingCenterExploration
         public MessagingCenterCallAndReturnPage()
         {
             InitializeComponent();
-            // MessagingCenter.Unsubscribe<MessagingCenterCallAndReturnViewModel>(this, "CallViewFromViewModel"); // This will not do anything
-            
+
             ReportStackLayout.Children.Clear();
         }
 
@@ -30,5 +23,18 @@ namespace MessagingCenterExploration
             ReportStackLayout.Children.Add(new Label { Text = $"Handling Call from ViewModel {count}" });
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            MessagingCenter.Subscribe<MessagingCenterCallAndReturnViewModel>(this, "CallViewFromViewModel", HandleCall);
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            MessagingCenter.Unsubscribe<MessagingCenterCallAndReturnViewModel>(this, "CallViewFromViewModel");
+        }
     }
 }
